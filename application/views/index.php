@@ -7,7 +7,7 @@
  
     <body>
     	<div>
-    		<div data-ng-include="'/application/views/login.php'"></div>
+    		<ui-view></ui-view>
     	</div>
  
         <script src="/public/bower_components/angular/angular.min.js"></script>

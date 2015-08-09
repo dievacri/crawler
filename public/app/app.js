@@ -19,7 +19,7 @@
 
         router.state('login', {
             url: '/login',
-            templateUrl: '/application/views/index.php',
+            templateUrl: '/application/views/login.php',
             controller: 'HomeController',
             controllerAs: 'home',
             resolve: {
