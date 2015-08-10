@@ -5,7 +5,8 @@
         .module('crawler', [
         'ui.router',
         'oc.lazyLoad',
-        'ngSanitize'
+        'ngSanitize',
+        'angular-storage'
         ])
         .config(stateConfig)
         .run(stateRun);
@@ -27,6 +28,51 @@
                     return lazy.load([{
                         files: [
                             '/public/app/components/home/home.controller.js'
+                        ]
+                    }]);
+                }]
+            }
+        })
+        .state('app', {
+            abstract: true,
+            templateUrl: '/application/views/template.php',
+            resolve: {
+                deps: ['$ocLazyLoad', function (lazy) {
+                    return lazy.load([{
+                        files: [
+                            '/public/app/components/home/home.controller.js',
+                            '/public/app/components/sidebar/sidebar.controller.js'
+                        ]
+                    }]);
+                }]
+            }
+        })
+        .state('app.home', {
+            url:'/home',
+            templateUrl: '/application/views/home.php',
+            controller: 'HomeController',
+            controllerAs: 'home',
+            resolve: {
+                deps: ['$ocLazyLoad', function (lazy) {
+                    return lazy.load([{
+                        files: [
+                            '/public/app/components/home/home.controller.js',
+                            '/public/app/components/sidebar/sidebar.controller.js'
+                        ]
+                    }]);
+                }]
+            }
+        })
+        .state('app.pais', {
+            url: '/pais',
+            templateUrl: '/application/views/pais.php',
+            controller: 'PaisController',
+            controllerAs: 'pais',
+            resolve: {
+                deps: ['$ocLazyLoad', function (lazy) {
+                    return lazy.load([{
+                        files: [
+                            '/public/app/components/pais/pais.controller.js'
                         ]
                     }]);
                 }]
