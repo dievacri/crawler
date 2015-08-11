@@ -21,13 +21,13 @@
         router.state('login', {
             url: '/login',
             templateUrl: '/application/views/login.php',
-            controller: 'HomeController',
-            controllerAs: 'home',
+            controller: 'LoginController',
+            controllerAs: 'login',
             resolve: {
                 deps: ['$ocLazyLoad', function (lazy) {
                     return lazy.load([{
                         files: [
-                            '/public/app/components/home/home.controller.js'
+                            '/public/app/components/home/login.controller.js'
                         ]
                     }]);
                 }]
@@ -36,20 +36,6 @@
         .state('app', {
             abstract: true,
             templateUrl: '/application/views/template.php',
-            resolve: {
-                deps: ['$ocLazyLoad', function (lazy) {
-                    return lazy.load([{
-                        files: [
-                            '/public/app/components/home/home.controller.js',
-                            '/public/app/components/sidebar/sidebar.controller.js'
-                        ]
-                    }]);
-                }]
-            }
-        })
-        .state('app.home', {
-            url:'/home',
-            templateUrl: '/application/views/home.php',
             controller: 'HomeController',
             controllerAs: 'home',
             resolve: {
@@ -61,11 +47,36 @@
                         ]
                     }]);
                 }]
-            }
+            }          
+        })
+        .state('app.home', {
+            url:'/home',
+            templateUrl: '/application/views/home.php',
+            controller: 'HomeController',
+            controllerAs: 'home'
         })
         .state('app.pais', {
+            abstract: true,
+            templateUrl: '/application/views/template.pais.php'
+        })
+        .state('app.pais.home', {
             url: '/pais',
             templateUrl: '/application/views/pais.php',
+            controller: 'PaisController',
+            controllerAs: 'pais',
+            resolve: {
+                deps: ['$ocLazyLoad', function (lazy) {
+                    return lazy.load([{
+                        files: [
+                            '/public/app/components/pais/pais.controller.js'
+                        ]
+                    }]);
+                }]
+            }
+        })
+        .state('app.pais.registrar', {
+            url: '/pais/registrar',
+            templateUrl: '/application/views/registrar.pais.php',
             controller: 'PaisController',
             controllerAs: 'pais',
             resolve: {

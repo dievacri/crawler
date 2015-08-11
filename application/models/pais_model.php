@@ -15,5 +15,43 @@
         	}
 
         }
+
+        public function registrarPais($name){
+            $this->db->insert('pais', array('nombrePais' => $name));
+            $afftectedRows = $this->db->affected_rows();
+
+            if($afftectedRows == 1){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        public function eliminarPais($idPais){
+            $this->db->delete('pais', array('idPais' => $idPais));
+            $afftectedRows = $this->db->affected_rows();
+
+            if($afftectedRows == 1){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        public function modificarPais($idPais, $nombrePais){
+            $data = array(
+                'nombrePais' => $nombrePais
+            );
+
+            $this->db->where('idPais', $idPais);
+            $this->db->update('pais', $data);
+            $afftectedRows = $this->db->affected_rows();
+
+            if($afftectedRows == 1){
+                return true;
+            }else{
+                return false;
+            }
+        }
     }
 ?>

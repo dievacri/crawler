@@ -10,7 +10,7 @@
             $this->db->where("contrasenaUsuario", $password);
             $query = $this->db->get("usuario");
             if($query->num_rows() == 1){
-                return true;
+                return $query->row_array();
             }else{
                 return false;
             }

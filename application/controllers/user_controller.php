@@ -21,14 +21,14 @@ class User_controller extends CI_Controller {
                 $user = $this->input->get_post("user");
                 $password = $this->input->get_post("password");
                 $loginUser = $this->user_model->loginUser($user,$password);
-                if($loginUser === true){
+                if($loginUser){
                 	$newdata = array(
 					        'username'  => $user,
 					        'logged_in' => TRUE
 					);
 
 					//$this->session->set_userdata($newdata);
-                    echo json_encode(array("respuesta" => "success"));
+                    echo json_encode(array("respuesta" => "success","pais"=>$loginUser['idPais']));
                 }else{
                     echo json_encode(array("respuesta" => "Email no registrado y/o Contraseña incorrecta"));
                 }
