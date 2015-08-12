@@ -11,7 +11,7 @@
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-flag"></span></a>
           <ul class="dropdown-menu">
             <li ng-repeat="(key,data) in home.countries">
-              <a href="#" ng-click="home.changeCountry(data.idPais);" ng-bind="data.nombrePais"></a>
+              <a style="cursor:pointer;" ng-click="home.changeCountry(data.idPais);" ng-bind="data.nombrePais"></a>
             </li>
           </ul>
         </li>

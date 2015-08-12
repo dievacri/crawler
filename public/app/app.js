@@ -41,7 +41,13 @@
             abstract: true,
             templateUrl: '/application/views/template.php',
             controller: 'HomeController',
-            controllerAs: 'home',
+            controllerAs: 'home'         
+        })
+        .state('app.home', {
+            url:'/home',
+            templateUrl: '/application/views/home.php',
+            controller: 'HomeController',
+            controllerAs: 'home',      
             resolve: {
                 deps: ['$ocLazyLoad', function (lazy) {
                     return lazy.load([{
@@ -51,66 +57,89 @@
                         ]
                     }]);
                 }]
-            }          
-        })
-        .state('app.home', {
-            url:'/home',
-            templateUrl: '/application/views/home.php',
-            controller: 'HomeController',
-            controllerAs: 'home'
-        })
+            }
+        }) 
         .state('app.pais', {
             abstract: true,
-            templateUrl: '/application/views/template.pais.php'
-        })
-        .state('app.pais.home', {
-            url: '/pais',
-            templateUrl: '/application/views/pais.php',
-            controller: 'PaisController',
+            templateUrl: '/application/views/template.pais.php',
             controllerAs: 'pais',
             resolve: {
                 deps: ['$ocLazyLoad', function (lazy) {
                     return lazy.load([{
                         files: [
+                            '/public/app/components/home/home.controller.js',
+                            '/public/app/components/sidebar/sidebar.controller.js',
+
                             '/public/app/components/pais/pais.controller.js'
                         ]
                     }]);
                 }]
             }
+        })
+        .state('app.pais.home', {
+            url: '/pais',
+            templateUrl: '/application/views/pais.php',
+            controller: 'PaisController'
         })
         .state('app.pais.registrar', {
             url: '/pais/registrar',
             templateUrl: '/application/views/registrar.pais.php',
             controller: 'PaisController',
-            controllerAs: 'pais',
-            resolve: {
-                deps: ['$ocLazyLoad', function (lazy) {
-                    return lazy.load([{
-                        files: [
-                            '/public/app/components/pais/pais.controller.js'
-                        ]
-                    }]);
-                }]
-            }
+            controllerAs: 'pais'
         })
         .state('app.compania', {
             abstract: true,
             templateUrl: '/application/views/template.compania.php'
         })
-        .state('app.compania.registrar', {
-            url: '/compania/registrar',
-            templateUrl: '/application/views/registrar.compania.php',
+        .state('app.compania.home', {
+            url: '/compania',
+            templateUrl: '/application/views/compania.php',
             controller: 'CompaniaController',
             controllerAs: 'compania',
             resolve: {
                 deps: ['$ocLazyLoad', function (lazy) {
                     return lazy.load([{
                         files: [
+                            '/public/app/components/home/home.controller.js',
+                            '/public/app/components/sidebar/sidebar.controller.js',
                             '/public/app/components/compania/compania.controller.js'
                         ]
                     }]);
                 }]
             }
+        })
+        .state('app.compania.registrar', {
+            url: '/compania/registrar',
+            templateUrl: '/application/views/registrar.compania.php',
+            controller: 'CompaniaController',
+            controllerAs: 'compania'
+        })
+        .state('app.categoria', {
+            abstract: true,
+            templateUrl: '/application/views/template.categoria.php'
+        })        
+        .state('app.categoria.home', {
+            url: '/categoria',
+            templateUrl: '/application/views/categoria.php',
+            controller: 'CategoriaController',
+            controllerAs: 'categoria',
+            resolve: {
+                deps: ['$ocLazyLoad', function (lazy) {
+                    return lazy.load([{
+                        files: [
+                            '/public/app/components/home/home.controller.js',
+                            '/public/app/components/sidebar/sidebar.controller.js',
+                            '/public/app/components/categoria/categoria.controller.js'
+                        ]
+                    }]);
+                }]
+            }
+        })        
+        .state('app.categoria.registrar', {
+            url: '/categoria/registrar',
+            templateUrl: '/application/views/registrar.categoria.php',
+            controller: 'CategoriaController',
+            controllerAs: 'categoria'
         })
     };
 

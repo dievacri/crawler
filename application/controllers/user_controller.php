@@ -5,11 +5,11 @@ class User_controller extends CI_Controller {
 	
 	public  function __construct(){
         parent::__construct();
+        $this->load->library('session');
     }
 
      public function loginUser(){     	
         $this->load->library('form_validation');
-        $this->load->library('session');
         if($_REQUEST["user"] && $_REQUEST["password"])
         {
             $this->form_validation->set_rules('password', 'password', 'required');
@@ -24,10 +24,11 @@ class User_controller extends CI_Controller {
                 if($loginUser){
                 	$newdata = array(
 					        'username'  => $user,
+                            'pais' => $loginUser['idPais'],
 					        'logged_in' => TRUE
 					);
 
-					//$this->session->set_userdata($newdata);
+					$this->session->set_userdata($newdata);
                     echo json_encode(array("respuesta" => "success","pais"=>$loginUser['idPais']));
                 }else{
                     echo json_encode(array("respuesta" => "Email no registrado y/o Contraseña incorrecta"));
@@ -36,5 +37,22 @@ class User_controller extends CI_Controller {
         }else{
             echo json_encode(array("respuesta" => "error en la datos"));
         }
+    }
+
+    public function cambiarPais(){
+        $request_method = $_SERVER['REQUEST_METHOD'];
+
+        switch($request_method)
+        {
+          CASE 'PUT':
+            parse_str(file_get_contents('php://input'), $_PUT);
+
+          CASE 'DELETE':
+            parse_str(file_get_contents('php://input'), $_DELETE);
+        }
+
+        $idPais = $_PUT['idPais'];
+        $this->session->set_userdata('pais', $idPais);
+        echo json_encode(array("respuesta" => "success"));
     }
 }

@@ -1,4 +1,4 @@
-<div data-ng-controller="PaisController">
+<div data-ng-controller="PaisController as pais">
 	<h3>Paises</h3>
 	<div class="row">
 		<div ng-repeat="(key,data) in pais.data">

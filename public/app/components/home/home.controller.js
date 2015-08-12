@@ -47,9 +47,18 @@
         function changeCountry(idPais){
             var user = store.get('usuario');
             var newUser = {email:user.email,pais:idPais};
-            store.remove('usuario');
-            store.set('usuario',newUser);
-            $location.path("/home");    
+            $http({
+                url: 'http://localhost:8000/index.php/user_controller/cambiarPais',
+                method: "PUT",
+                data : "idPais="+idPais,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }).success(function(data){
+                if(data.respuesta == "success"){
+                    store.remove('usuario');
+                    store.set('usuario',newUser);
+                    $window.location.reload();
+                }
+            });
         }
 
     }
