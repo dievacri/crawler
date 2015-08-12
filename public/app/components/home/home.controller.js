@@ -8,11 +8,12 @@
     /* homeController.$inject = [''];
 
     /* @ngInject */
-    function homeController($http,$location,store){
+    function homeController($http,$location,store,$window){
         var home = this;
 
         home.getUser = getUser;
         home.logout = logout;
+        home.changeCountry = changeCountry;
 
         home.activate = activate();
 
@@ -22,7 +23,13 @@
                 method: "GET"
             }).success(function(data){
                 if(data.respuesta == "success"){
+                    var user = store.get('usuario');
                     home.countries = data.mensaje;
+                    for (var i = home.countries.length - 1; i >= 0; i--) {
+                        if(home.countries[i].idPais == user.pais){
+                            home.countrie = home.countries[i].nombrePais;
+                        }
+                    };
                 }
             }); 
         }
@@ -35,6 +42,14 @@
         function logout(){
             store.remove('usuario');
             $location.path('/login');
+        }
+
+        function changeCountry(idPais){
+            var user = store.get('usuario');
+            var newUser = {email:user.email,pais:idPais};
+            store.remove('usuario');
+            store.set('usuario',newUser);
+            $location.path("/home");    
         }
 
     }

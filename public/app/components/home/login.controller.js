@@ -8,7 +8,7 @@
     /* loginController.$inject = [''];
 
     /* @ngInject */
-    function loginController($http,$location,store){
+    function loginController($http,$state,store){
         var login = this;
 
         login.getLogin = getLogin;
@@ -28,7 +28,7 @@
                 if(data.respuesta == "success"){
                     //mandamos a la login
                     store.set('usuario',{email:login.user,pais:data.pais});
-                    $location.path("/home");                   
+                    $state.go("app.home");                   
                 }else{
                     login.error = data.respuesta;
                 }

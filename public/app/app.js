@@ -11,11 +11,15 @@
         .config(stateConfig)
         .run(stateRun);
 
-    stateConfig.$inject = ['$urlRouterProvider', '$stateProvider'];
+    stateConfig.$inject = ['$urlRouterProvider', '$stateProvider','$ocLazyLoadProvider'];
     stateRun.$inject = ['$state'];
 
     /* @ngInject */
-    function stateConfig(url, router) {
+    function stateConfig(url, router,$lazyLoad) {
+        $lazyLoad.config({
+            debug: true
+        });
+
         url.otherwise('/login');
 
         router.state('login', {
@@ -84,6 +88,25 @@
                     return lazy.load([{
                         files: [
                             '/public/app/components/pais/pais.controller.js'
+                        ]
+                    }]);
+                }]
+            }
+        })
+        .state('app.compania', {
+            abstract: true,
+            templateUrl: '/application/views/template.compania.php'
+        })
+        .state('app.compania.registrar', {
+            url: '/compania/registrar',
+            templateUrl: '/application/views/registrar.compania.php',
+            controller: 'CompaniaController',
+            controllerAs: 'compania',
+            resolve: {
+                deps: ['$ocLazyLoad', function (lazy) {
+                    return lazy.load([{
+                        files: [
+                            '/public/app/components/compania/compania.controller.js'
                         ]
                     }]);
                 }]
