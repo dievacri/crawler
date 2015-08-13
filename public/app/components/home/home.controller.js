@@ -48,7 +48,7 @@
             var user = store.get('usuario');
             var newUser = {email:user.email,pais:idPais};
             $http({
-                url: 'http://localhost:8000/index.php/user_controller/cambiarPais',
+                url: 'http://localhost:8000/index.php/usuario_controller/cambiarPais',
                 method: "PUT",
                 data : "idPais="+idPais,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}

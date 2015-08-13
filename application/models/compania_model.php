@@ -10,7 +10,7 @@
         		$this->db->where('idCompania',$idCompania);
         	}
         	$this->db->where('idPais',$idPais);
-        	$query = $this->db->get('companias');
+        	$query = $this->db->get('compania');
 
         	if(empty($query)){
         		return '';
@@ -25,7 +25,7 @@
         }
 
         public function registrarCompania($idCompania, $idPais, $name){
-        	$this->db->insert('companias', array('idCompania'=>$idCompania,'idPais'=>$idPais,'nombreCompania' => $name));
+        	$this->db->insert('compania', array('idCompania'=>$idCompania,'idPais'=>$idPais,'nombreCompania' => $name));
             $afftectedRows = $this->db->affected_rows();
 
             if($afftectedRows == 1){
@@ -36,7 +36,7 @@
         }
 
         public function eliminarCompania($idCompania){
-        	$this->db->delete('companias', array('idCompania' => $idCompania));
+        	$this->db->delete('compania', array('idCompania' => $idCompania));
             $afftectedRows = $this->db->affected_rows();
 
             if($afftectedRows == 1){
@@ -53,7 +53,7 @@
             );
 
             $this->db->where('id', $id);
-            $this->db->update('companias', $data);
+            $this->db->update('compania', $data);
             $afftectedRows = $this->db->affected_rows();
 
             if($afftectedRows == 1){

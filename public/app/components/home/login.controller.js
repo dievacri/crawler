@@ -20,7 +20,7 @@
 
         function getLogin(){
             $http({
-                url: 'http://localhost:8000/index.php/user_controller/loginUser',
+                url: 'http://localhost:8000/index.php/usuario_controller/loginUser',
                 method: "POST",
                 data : "user="+login.user+"&password="+login.password,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}

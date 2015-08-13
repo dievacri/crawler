@@ -141,6 +141,60 @@
             controller: 'CategoriaController',
             controllerAs: 'categoria'
         })
+        .state('app.producto', {
+            abstract: true,
+            templateUrl: '/application/views/template.producto.php'
+        })     
+        .state('app.producto.home', {
+            url: '/producto',
+            templateUrl: '/application/views/producto.php',
+            controller: 'ProductoController',
+            controllerAs: 'producto',
+            resolve: {
+                deps: ['$ocLazyLoad', function (lazy) {
+                    return lazy.load([{
+                        files: [
+                            '/public/app/components/home/home.controller.js',
+                            '/public/app/components/sidebar/sidebar.controller.js',
+                            '/public/app/components/producto/producto.controller.js'
+                        ]
+                    }]);
+                }]
+            }
+        })   
+        .state('app.producto.registrar', {
+            url: '/producto/registrar',
+            templateUrl: '/application/views/registrar.producto.php',
+            controller: 'ProductoController',
+            controllerAs: 'producto'
+        })
+        .state('app.usuario', {
+            abstract: true,
+            templateUrl: '/application/views/template.usuario.php'
+        })     
+        .state('app.usuario.home', {
+            url: '/usuario',
+            templateUrl: '/application/views/usuario.php',
+            controller: 'UsuarioController',
+            controllerAs: 'usuario',
+            resolve: {
+                deps: ['$ocLazyLoad', function (lazy) {
+                    return lazy.load([{
+                        files: [
+                            '/public/app/components/home/home.controller.js',
+                            '/public/app/components/sidebar/sidebar.controller.js',
+                            '/public/app/components/usuario/usuario.controller.js'
+                        ]
+                    }]);
+                }]
+            }
+        })   
+        .state('app.usuario.registrar', {
+            url: '/usuario/registrar',
+            templateUrl: '/application/views/registrar.usuario.php',
+            controller: 'UsuarioController',
+            controllerAs: 'usuario'
+        })
     };
 
     /* @ngInject */
