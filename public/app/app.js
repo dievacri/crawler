@@ -195,6 +195,60 @@
             controller: 'UsuarioController',
             controllerAs: 'usuario'
         })
+        .state('app.item', {
+            abstract: true,
+            templateUrl: '/application/views/template.item.php'
+        })     
+        .state('app.item.home', {
+            url: '/item',
+            templateUrl: '/application/views/item.php',
+            controller: 'ItemController',
+            controllerAs: 'item',
+            resolve: {
+                deps: ['$ocLazyLoad', function (lazy) {
+                    return lazy.load([{
+                        files: [
+                            '/public/app/components/home/home.controller.js',
+                            '/public/app/components/sidebar/sidebar.controller.js',
+                            '/public/app/components/item/item.controller.js'
+                        ]
+                    }]);
+                }]
+            }
+        }) 
+        .state('app.item.registrar', {
+            url: '/item/registrar',
+            templateUrl: '/application/views/registrar.item.php',
+            controller: 'ItemController',
+            controllerAs: 'item'
+        })
+        .state('app.item.editar', {
+            url: '/item/editar',
+            templateUrl: '/application/views/editar.item.php',
+            controller: 'ItemController',
+            controllerAs: 'item'
+        })
+        .state('app.comparador', {
+            abstract: true,
+            templateUrl: '/application/views/template.comparador.php'
+        })
+        .state('app.comparador.home', {
+            url: '/comparador',
+            templateUrl: '/application/views/comparador.php',
+            controller: 'ComparadorController',
+            controllerAs: 'comparador',
+            resolve: {
+                deps: ['$ocLazyLoad', function (lazy) {
+                    return lazy.load([{
+                        files: [
+                            '/public/app/components/home/home.controller.js',
+                            '/public/app/components/sidebar/sidebar.controller.js',
+                            '/public/app/components/comparador/comparador.controller.js'
+                        ]
+                    }]);
+                }]
+            }
+        })     
     };
 
     /* @ngInject */

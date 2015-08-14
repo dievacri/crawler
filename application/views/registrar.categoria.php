@@ -16,6 +16,6 @@
 		</form>
 	</div>
 	<div class="row">
-		<div class="alert alert-danger col-md-4" role="alert" ng-show="compania.registrar.length > 0" ng-bind="compania.registrar"></div>
+		<div class="alert alert-danger col-md-4" role="alert" ng-show="cateroria.errorRegistrar.length > 0" ng-bind="categoria.errorRegistrar"></div>
 	</div>
 </div>
