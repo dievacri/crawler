@@ -13,6 +13,7 @@
 
         comparador.getItems = getItems;
         comparador.compara = compara;
+        comparador.comparaTodos = comparaTodos;
 
         activate();
 
@@ -43,18 +44,34 @@
             });
         }
 
-        function compara (idItem,idProducto) {
+        function compara (idItem,idProducto,idResult) {
             $http({
                 url: 'http://localhost:8000/index.php/comparador_controller/compararItem',
                 method: "GET",
-                params: {idItem:idItem,idProducto:idProducto},
+                params: {idItem:idItem,idProducto:idProducto,idResult:idResult},
             }).success(function(data){
                 if(data.respuesta == "success"){
-                    comparador.data = data.mensaje;
+                    $('#result-'+idResult).html(data.mensaje);
                 }else{
                     comparador.error = data.mensaje;
                 }
             });    
+        }
+
+        function comparaTodos(idCategoria){
+            $http({
+                url: 'http://localhost:8000/index.php/comparador_controller/compararTodos',
+                method: "GET",
+                params: {idCategoria:idCategoria},
+            }).success(function(data){
+                if(data.respuesta == "success"){                    
+                    for (var i = data.mensaje.length - 1; i >= 0; i--) {
+                        $('#result-'+data.mensaje[i].idResult).html(data.mensaje[i].mensaje);
+                    };
+                }else{
+                    comparador.error = data.mensaje;
+                }
+            }); 
         }       
     }
 })();

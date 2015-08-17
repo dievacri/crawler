@@ -1,5 +1,5 @@
-<div data-ng-controller="ComparadorController as comparador">
-	<h3>Comparar Items</h3>
+<div data-ng-controller="AlertaController as alerta">
+	<h3>Alertas</h3>
 	<div class="row">
 		<div class="col-md-4">
 			<select class="form-control" ng-change="comparador.getItems()" ng-options="data.idCategoria as data.nombreCategoria for (key , data) in comparador.dataCategoria" ng-model="comparador.categoria">			

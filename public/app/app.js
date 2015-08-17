@@ -248,7 +248,28 @@
                     }]);
                 }]
             }
-        })     
+        })        
+        .state('app.alerta', {
+            abstract: true,
+            templateUrl: '/application/views/template.alerta.php'
+        })    
+        .state('app.alerta.home', {
+            url: '/alerta',
+            templateUrl: '/application/views/alerta.php',
+            controller: 'AlertaController',
+            controllerAs: 'alerta',
+            resolve: {
+                deps: ['$ocLazyLoad', function (lazy) {
+                    return lazy.load([{
+                        files: [
+                            '/public/app/components/home/home.controller.js',
+                            '/public/app/components/sidebar/sidebar.controller.js',
+                            '/public/app/components/alerta/alerta.controller.js'
+                        ]
+                    }]);
+                }]
+            }
+        })   
     };
 
     /* @ngInject */
