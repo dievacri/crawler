@@ -6,7 +6,8 @@
         'ui.router',
         'oc.lazyLoad',
         'ngSanitize',
-        'angular-storage'
+        'angular-storage',
+        'ui.bootstrap'
         ])
         .config(stateConfig)
         .run(stateRun);

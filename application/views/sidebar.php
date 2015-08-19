@@ -7,6 +7,6 @@
 	  <li><a ui-sref="app.producto.home">Productos</a></li>
 	  <li><a ui-sref="app.item.home">Items</a></li>
 	  <li><a ui-sref="app.usuario.home">Usuarios</a></li>
-	  <li><a ui-sref="app.comparador.home">Comprador</a></li>
+	  <li><a ui-sref="app.comparador.home">Comparador</a></li>
 	</ul>
 </div>

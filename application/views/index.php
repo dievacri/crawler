@@ -18,6 +18,8 @@
         <script src="/public/bower_components/a0-angular-storage/dist/angular-storage.min.js"></script>
         <script src="/public/bower_components/jquery/dist/jquery.min.js"></script>
         <script src="/public/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="/public/bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+        <script src="/public/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
         <script src="/public/app/app.js"></script>        
     </body>
 </html>
